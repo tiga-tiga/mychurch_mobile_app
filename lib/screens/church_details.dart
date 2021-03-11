@@ -107,37 +107,83 @@ class _ChurchDetailsState extends State<ChurchDetails> {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(5.0),
                     ),
-                    child: Column(
-                      children: <Widget>[
-                        ExpansionTile(
-                          title: Text("Infos Utiles"),
-                          children: <Widget>[
-                            ListTile(
-                              title: Text("Phone"),
-                              subtitle: Text("+977-9815225566"),
-                              leading: Icon(Icons.phone),
-                            ),
-                           ListTile(
-                              title: Text("Adresse"),
-                              subtitle: Text("Hlm Grand Yoff"),
-                              leading: Icon(Icons.phone),
-                            ),
-                            ListTile(
-                              title: Text("Email"),
-                              subtitle: Text("butterfly.little@gmail.com"),
-                              leading: Icon(Icons.email),
-                            ),
-                            ListTile(
-                              title: Text("A propos"),
-                              subtitle: Text(
-                                  "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nulla, illo repellendus quas beatae reprehenderit nemo, debitis explicabo officiis sit aut obcaecati iusto porro? Exercitationem illum consequuntur magnam eveniet delectus ab."),
-                              leading: Icon(Icons.person),
-                            ),
+                    child: SingleChildScrollView(
+                      physics: ScrollPhysics(),
+                      child: Column(
+                        children: <Widget>[
+                          ExpansionTile(
+                            title: Text("Infos Utiles"),
+                            children: <Widget>[
+                              ListTile(
+                                title: Text("Phone"),
+                                subtitle: Text("+977-9815225566"),
+                                leading: Icon(Icons.phone),
+                              ),
+                             ListTile(
+                                title: Text("Adresse"),
+                                subtitle: Text("Hlm Grand Yoff"),
+                                leading: Icon(Icons.phone),
+                              ),
+                              ListTile(
+                                title: Text("Email"),
+                                subtitle: Text("butterfly.little@gmail.com"),
+                                leading: Icon(Icons.email),
+                              ),
+                              ListTile(
+                                title: Text("A propos"),
+                                subtitle: Text(
+                                    "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nulla, illo repellendus quas beatae reprehenderit nemo, debitis explicabo officiis sit aut obcaecati iusto porro? Exercitationem illum consequuntur magnam eveniet delectus ab."),
+                                leading: Icon(Icons.person),
+                              ),
 
-                          ],
-                        ),
+                            ],
+                          ),
 
-                      ],
+                        ],
+                      ),
+                    ),
+                  ),Container(
+                    margin: EdgeInsets.only(top: 8),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                    child: SingleChildScrollView(
+                      physics: ScrollPhysics(),
+                      child: Column(
+                        children: <Widget>[
+                          Text('Informations Récentes'),
+                          ListView.builder(
+                              physics: NeverScrollableScrollPhysics(),
+                              scrollDirection: Axis.vertical,
+                              shrinkWrap: true,
+                              itemCount: 10,
+                              itemBuilder: (BuildContext context, int index){
+                                return GestureDetector(
+                                  onTap: (){
+                                    Navigator.of(context).pushNamed(ChurchDetails.routeName);
+                                  },
+                                  child: Card(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: ListTile(
+                                        leading :CircleAvatar(
+                                          radius: 20.0,
+                                          backgroundColor: const Color(0xFF778899),
+                                          backgroundImage:
+                                          NetworkImage("https://tineye.com/images/widgets/mona.jpg"),
+                                        ),
+                                        title: Text('tesst'),
+                                        subtitle: Text('Adresse de l\'église'),
+                                        trailing: Icon(Icons.keyboard_arrow_right),
+
+                                      ),
+                                    ),),
+                                );
+                              })
+
+                        ],
+                      ),
                     ),
                   )
                 ],
@@ -187,38 +233,28 @@ class _ChurchDetailsState extends State<ChurchDetails> {
       curve: Curves.bounceIn,
       children: [
         SpeedDialChild(
-          child: Icon(Icons.shopping_cart, color: AppColors.ACCENT_COLOR),
+          child: Icon(Icons.person, color: AppColors.ACCENT_COLOR),
           backgroundColor: AppColors.PRIMARY_COLOR,
           onTap: () {
             //Navigator.of(context)..pushNamed(ShopScreen.routeName);
           },
-          label: 'Boutique',
+          label: 'Contacts',
           labelStyle: TextStyle(
               fontWeight: FontWeight.w300, color: AppColors.ACCENT_COLOR),
           labelBackgroundColor: AppColors.PRIMARY_COLOR,
         ),
         SpeedDialChild(
-          child: Icon(Icons.person_add, color: AppColors.ACCENT_COLOR),
+          child: Icon(Icons.insert_comment, color: AppColors.ACCENT_COLOR),
           backgroundColor: AppColors.PRIMARY_COLOR,
           onTap: () {
             //Navigator.of(context).pushNamed(ClientSuggest.routeName);
           },
-          label: 'Proposer un client',
+          label: 'Services',
           labelStyle: TextStyle(
               fontWeight: FontWeight.w300, color: AppColors.ACCENT_COLOR),
           labelBackgroundColor: AppColors.PRIMARY_COLOR,
         ),
-        SpeedDialChild(
-          child: Icon(Icons.search, color: AppColors.ACCENT_COLOR),
-          backgroundColor: AppColors.PRIMARY_COLOR,
-          onTap: () {
-            //Navigator.of(context).pushNamed(SearchInstall.routeName);
-          },
-          label: 'Chercher une installation',
-          labelStyle: TextStyle(
-              fontWeight: FontWeight.w300, color: AppColors.ACCENT_COLOR),
-          labelBackgroundColor: AppColors.PRIMARY_COLOR,
-        ),
+
       ],
     );
   }
